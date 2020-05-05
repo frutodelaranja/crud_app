@@ -34,6 +34,9 @@ public class UserService {
             return false;
     }
 
+    public User getUser(Long id){
+        return dao.getUser(id);
+    }
     public List<User> getAllUsers() {
         return dao.getAllUsers();
     }

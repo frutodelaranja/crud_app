@@ -17,6 +17,9 @@
 
     <c:set  var="user" value="${userName}"/>
     <c:set  var="idOld" value="${id}"/>
+    <c:set  var="nameOld" value="${name}"/>
+    <c:set  var="mailOld" value="${mail}"/>
+    <c:set  var="passOld" value="${pass}"/>
     <c:if test="${ user != null}">
         <div class="w3-panel w3-green w3-display-container w3-card-4 w3-round">
             <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-green w3-border w3-border-green w3-hover-border-grey">×</span>
@@ -43,19 +46,19 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user-o"></i></div>
                     <div class="w3-rest">
-                        <input  type="text" name="name"  placeholder="Name" class="w3-input w3-border w3-round">
+                        <input  type="text" name="name" value="${nameOld}" placeholder="Name" class="w3-input w3-border w3-round">
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
                     <div class="w3-rest">
-                        <input type="text" name="mail" placeholder="Email" class="w3-input w3-border w3-round">
+                        <input type="text" name="mail" value="${mailOld}" placeholder="Email" class="w3-input w3-border w3-round">
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i></div>
                     <div class="w3-rest">
-                        <input type="password" name="pass" placeholder="Password" class="w3-input w3-border w3-round" >
+                        <input type="password" name="pass" value="${passOld}" placeholder="Password" class="w3-input w3-border w3-round" >
                     </div>
                 </div>
 

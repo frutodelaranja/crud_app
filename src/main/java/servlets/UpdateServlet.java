@@ -12,14 +12,19 @@ import java.io.IOException;
 
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {
+    UserService service= UserService.getInstance();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.valueOf(req.getParameter("id"));
+        User user = service.getUser(id);
         req.setAttribute("id", id);
+        req.setAttribute("name", user.getName());
+        req.setAttribute("mail", user.getLogin());
+        req.setAttribute("pass", user.getPassword());
         req.getRequestDispatcher("/update.jsp").forward(req,resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService service= UserService.getInstance();
+
         User user = new User();
         user.setId(Long.valueOf(req.getParameter("id")));
         user.setName(req.getParameter("name"));

@@ -79,7 +79,7 @@
 <div class="w3-row">
     <div class="w3-col  w3-container" style="width:30%"></div>
     <div class="w3-col  w3-container" style="width:40%">
-        <form action="/" method="post" class="w3-center w3-container w3-card-4 w3-light-grey w3-text-lime w3-margin">
+        <form action="/" method="post" class="w3-center w3-container w3-card-4 w3-light-grey w3-text-green w3-margin">
             <h2 class="w3-center">Добавить Чебурашку к Чебурнету</h2>
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user-o"></i></div>
             <div class="w3-rest">
@@ -93,7 +93,7 @@
             <div class="w3-rest">
                 <input type="password" name="pass" placeholder="Password" class="w3-input w3-border w3-round"><br/>
             </div>
-            <button type="submit" class="w3-btn w3-lime w3-round w3-margin-bottom">Add <i
+            <button type="submit" class="w3-btn w3-green w3-round w3-margin-bottom">Add <i
                     class='fa fa-user-plus'></i></button>
         </form>
     </div>

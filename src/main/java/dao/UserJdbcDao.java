@@ -118,4 +118,21 @@ public class UserJdbcDao {
             return false;
         }
     }
+    public User getUser(Long id) {
+        User isUser = new User();
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id=?");) {
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                isUser.setId(result.getLong(1));
+                isUser.setName(result.getString(2));
+                isUser.setLogin(result.getString(3));
+                isUser.setPassword(result.getString(4));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUser;
+    }
 }
