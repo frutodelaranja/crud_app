@@ -2,18 +2,32 @@ package dao;
 
 import model.User;
 import org.hibernate.*;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.service.ServiceRegistry;
 import util.DBHelper;
 
 import java.util.List;
 
 public class UserHibernateDao implements UserDao {
 
+    DBHelper dbHelper;
+    Configuration configuration;
     private SessionFactory sessionFactory;
     private Session session;
 
     public UserHibernateDao() {
-        this.sessionFactory = DBHelper.getSessionFactory();
+        this.dbHelper = DBHelper.getInstance();
+        this.configuration = dbHelper.getConfiguration();
+        this.sessionFactory = getSessionFactory();
+    }
+
+    public SessionFactory getSessionFactory() {
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
+        builder.applySettings(configuration.getProperties());
+        ServiceRegistry serviceRegistry = builder.build();
+        return sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
     @Override

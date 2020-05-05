@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserJdbcDao implements UserDao{
+    DBHelper dbHelper = DBHelper.getInstance();
     Connection connection;
 
     {
         try {
-            connection = new DBHelper().getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            connection = dbHelper.getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

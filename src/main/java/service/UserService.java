@@ -4,6 +4,7 @@ import dao.UserDao;
 import dao.UserHibernateDao;
 import dao.UserJdbcDao;
 import model.User;
+import util.UserDaoFactory;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class UserService {
     private static UserService userService;
     private UserDao dao;
     private UserService(){
-        dao = new UserHibernateDao();
+        dao = new UserDaoFactory().getDao();
     }
 
     public static UserService getInstance() {
