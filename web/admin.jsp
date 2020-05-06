@@ -31,7 +31,7 @@
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>
-                        <c:out value="${User}"/>
+                        <c:out value="${user.getRole}"/>
                     </td>
                     <td>
                         <c:out value="${user.getId()}"/>

@@ -20,6 +20,7 @@ public class UpdateServlet extends HttpServlet {
         req.setAttribute("name", user.getName());
         req.setAttribute("mail", user.getLogin());
         req.setAttribute("pass", user.getPassword());
+        req.setAttribute("role", user.getRole());
         req.getRequestDispatcher("/update.jsp").forward(req,resp);
     }
 

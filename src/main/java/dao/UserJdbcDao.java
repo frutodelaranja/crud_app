@@ -26,10 +26,11 @@ public class UserJdbcDao implements UserDao{
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        try(PreparedStatement statement = connection.prepareStatement("INSERT INTO users(name, login, password) VALUES (?,?,?)");){
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getLogin());
-            statement.setString(3, user.getPassword());
+        try(PreparedStatement statement = connection.prepareStatement("INSERT INTO users(role, name, login, password) VALUES (?,?,?,?)")){
+            statement.setString(1, user.getRole());
+            statement.setString(2, user.getName());
+            statement.setString(3, user.getLogin());
+            statement.setString(4, user.getPassword());
             boolean yes = statement.executeUpdate() > 0;
             connection.commit();
             return yes;
@@ -58,11 +59,11 @@ public class UserJdbcDao implements UserDao{
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        try (Statement statement = connection.createStatement();) {
+        try (Statement statement = connection.createStatement()) {
             statement.executeQuery("select * from users");
             ResultSet result = statement.getResultSet();
             while (result.next()) {
-                users.add(new User(result.getLong(1), result.getString(2), result.getString(3), result.getString(4)));
+                users.add(new User(result.getLong(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5)));
             }
 
         } catch (SQLException e) {
@@ -79,11 +80,12 @@ public class UserJdbcDao implements UserDao{
             throwables.printStackTrace();
         }
 
-        try (PreparedStatement statement = connection.prepareStatement("UPDATE users SET name=?, login=?, password=? WHERE id=?");) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getLogin());
-            statement.setString(3, user.getPassword());
-            statement.setLong(4, user.getId());
+        try (PreparedStatement statement = connection.prepareStatement("UPDATE users SET role=?, name=?, login=?, password=? WHERE id=?");) {
+            statement.setString(1, user.getRole());
+            statement.setString(2, user.getName());
+            statement.setString(3, user.getLogin());
+            statement.setString(4, user.getPassword());
+            statement.setLong(5, user.getId());
             boolean yes = statement.executeUpdate() > 0;
             connection.commit();
             return yes;
@@ -121,14 +123,15 @@ public class UserJdbcDao implements UserDao{
     }
     public User getUser(Long id) {
         User isUser = new User();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id=?");) {
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id=?")) {
             statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 isUser.setId(result.getLong(1));
-                isUser.setName(result.getString(2));
-                isUser.setLogin(result.getString(3));
-                isUser.setPassword(result.getString(4));
+                isUser.setRole(result.getString(2));
+                isUser.setName(result.getString(3));
+                isUser.setLogin(result.getString(4));
+                isUser.setPassword(result.getString(5));
             }
 
         } catch (SQLException e) {

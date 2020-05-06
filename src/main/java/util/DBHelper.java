@@ -11,7 +11,7 @@ public class DBHelper {
     private static DBHelper dbHelper;
     private Connection connection;
     private Configuration configuration;
-    private static String url = "jdbc:mysql://localhost:3306/java_pp";
+    private static String url = "jdbc:mysql://localhost:3306/crud_db?serverTimezone=Europe/Moscow";
     private static String user = "root";
     private static String password = "root";
 

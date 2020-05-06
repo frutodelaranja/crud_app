@@ -23,6 +23,7 @@ public class AdminServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User();
+        user.setRole("user");
         user.setName(req.getParameter("name"));
         user.setLogin(req.getParameter("mail"));
         user.setPassword(req.getParameter("pass"));

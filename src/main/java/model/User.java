@@ -10,6 +10,8 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = Long.valueOf(0);
+    @Column(name = "role")
+    private String role;
     @Column(name = "name")
     private String name;
     @Column(name = "login")
@@ -20,14 +22,30 @@ public class User {
     public User() {
     }
 
-    public User(String name, String login, String password) {
+//    public User(String name, String login, String password) {
+//        this.name = name;
+//        this.login = login;
+//        this.password = password;
+//    }
+
+//    public User(Long id, String name, String login, String password) {
+//        this.id = id;
+//        this.name = name;
+//        this.login = login;
+//        this.password = password;
+//    }
+
+
+    public User(String role, String name, String login, String password) {
+        this.role = role;
         this.name = name;
         this.login = login;
         this.password = password;
     }
 
-    public User(Long id, String name, String login, String password) {
+    public User(Long id, String role, String name, String login, String password) {
         this.id = id;
+        this.role = role;
         this.name = name;
         this.login = login;
         this.password = password;
@@ -39,6 +57,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getName() {
@@ -69,6 +95,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", role='" + role + '\'' +
                 ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
