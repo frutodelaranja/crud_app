@@ -14,20 +14,23 @@ import java.io.IOException;
 public class UpdateServlet extends HttpServlet {
     UserService service= UserService.getInstance();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        UserService service= UserService.getInstance();
+        User user = new User();
         Long id = Long.valueOf(req.getParameter("id"));
-        User user = service.getUser(id);
+        user = service.getUser(id);
         req.setAttribute("id", id);
+        req.setAttribute("role", user.getRole());
         req.setAttribute("name", user.getName());
         req.setAttribute("mail", user.getLogin());
         req.setAttribute("pass", user.getPassword());
-        req.setAttribute("role", user.getRole());
         req.getRequestDispatcher("/update.jsp").forward(req,resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+//        UserService service= UserService.getInstance();
         User user = new User();
         user.setId(Long.valueOf(req.getParameter("id")));
+        user.setRole(req.getParameter("role"));
         user.setName(req.getParameter("name"));
         user.setLogin(req.getParameter("mail"));
         user.setPassword(req.getParameter("pass"));
@@ -35,11 +38,9 @@ public class UpdateServlet extends HttpServlet {
             if (service.updateUser(user)){
                 req.getRequestDispatcher("/").forward(req,resp);
             }else {
-                req.setAttribute("userName", null);
                 doGet(req, resp);
             }
         }else {
-            req.setAttribute("userName", null);
             doGet(req, resp);
         }
 

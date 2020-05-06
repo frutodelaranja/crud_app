@@ -16,6 +16,7 @@
 <div class="w3-center w3-container w3-padding">
 
     <c:set  var="user" value="${userName}"/>
+    <c:set  var="roleOld" value="${role}"/>
     <c:set  var="idOld" value="${id}"/>
     <c:set  var="nameOld" value="${name}"/>
     <c:set  var="mailOld" value="${mail}"/>
@@ -37,6 +38,12 @@
         <div class="w3-col  w3-container" style="width:50%">
             <form class="w3-center w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="post">
                 <h2 class="w3-center">Изменить Чебурашку</h2>
+                <div class="w3-row w3-section">
+                    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
+                    <div class="w3-rest">
+                        <input type="text" name="role" value="${roleOld}" placeholder="Role" class="w3-input w3-animate-input w3-border w3-round"><br />
+                    </div>
+                </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
                     <div class="w3-rest">

@@ -36,7 +36,7 @@ public class UserDaoFactory {
 
         try {
             List<String> lines = null;
-            lines = Files.readAllLines(Paths.get("daotype.properties"));
+            lines = Files.readAllLines(Paths.get("/home/evgeny/dev/crud_app/src/main/resources/daotype.properties"));
             result = lines.get(0);
         } catch (IOException e) {
             e.printStackTrace();
