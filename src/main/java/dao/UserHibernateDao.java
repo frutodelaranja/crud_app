@@ -120,7 +120,7 @@ public class UserHibernateDao implements UserDao {
     public User getUser(Long id) {
         session = sessionFactory.openSession();
         try {
-            User user = (User) session.load(User.class, id);
+            User user = (User) session.get(User.class, id);
             return user;
         } catch (HibernateException e) {
             e.printStackTrace();

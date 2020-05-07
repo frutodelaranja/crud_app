@@ -4,11 +4,8 @@ import dao.UserDao;
 import dao.UserHibernateDao;
 import dao.UserJdbcDao;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.*;
+import java.util.Properties;
 
 public class UserDaoFactory {
     DaoType type;
@@ -32,21 +29,15 @@ public class UserDaoFactory {
     }
 
     private DaoType getProperty(){
-        String result = "";
-
+        DaoType daoType = null;
+        File file = new File("/home/evgeny/dev/crud_app/src/main/resources/daotype.properties");
+        Properties properties = new Properties();
         try {
-            List<String> lines = null;
-            lines = Files.readAllLines(Paths.get("daotype.properties"));
-            result = lines.get(0);
+            properties.load(new FileReader(file));
+            daoType = DaoType.valueOf(properties.getProperty("daotype"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        if (result.contains("jdbc")){
-            return DaoType.JDBC;
-        }else if (result.contains("hibernate")){
-            return DaoType.HIBERNATE;
-        }
-        return null;
+        return daoType;
     }
 }
