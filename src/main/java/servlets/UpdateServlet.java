@@ -14,10 +14,9 @@ import java.io.IOException;
 public class UpdateServlet extends HttpServlet {
     UserService service= UserService.getInstance();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        UserService service= UserService.getInstance();
-        User user = new User();
+//        User user = new User();
         Long id = Long.valueOf(req.getParameter("id"));
-        user = service.getUser(id);
+        User user = service.getUser(id);
         req.setAttribute("id", id);
         req.setAttribute("role", user.getRole());
         req.setAttribute("name", user.getName());

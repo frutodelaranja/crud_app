@@ -15,16 +15,24 @@
 
 <div class="w3-center w3-container w3-padding">
 
+    <c:set  var="user" value="${userName}"/>
     <c:set  var="roleOld" value="${role}"/>
     <c:set  var="idOld" value="${id}"/>
     <c:set  var="nameOld" value="${name}"/>
     <c:set  var="mailOld" value="${mail}"/>
     <c:set  var="passOld" value="${pass}"/>
-
-    <div class="w3-panel w3-red w3-display-container w3-card-4 w3-round">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey">×</span>
-        <h5>"User not updated!"</h5>
-    </div>
+    <c:if test="${ user != null}">
+        <div class="w3-panel w3-green w3-display-container w3-card-4 w3-round">
+            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-green w3-border w3-border-green w3-hover-border-grey">×</span>
+            <h5>User ${user} updated!</h5>
+        </div>
+    </c:if>
+    <c:if test="${userName == null}">
+        <div class="w3-panel w3-red w3-display-container w3-card-4 w3-round">
+            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey">×</span>
+            <h5>"User not updated!"</h5>
+        </div>
+    </c:if>
     <div class="w3-row">
         <div class="w3-col  w3-container" style="width:25%"></div>
         <div class="w3-col  w3-container" style="width:50%">
