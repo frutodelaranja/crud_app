@@ -139,4 +139,25 @@ public class UserJdbcDao implements UserDao{
         }
         return isUser;
     }
+
+    @Override
+    public User getUser(String login, String password) {
+        User isUser = new User();
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE login=? and password=?")) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                isUser.setId(result.getLong(1));
+                isUser.setRole(result.getString(2));
+                isUser.setName(result.getString(3));
+                isUser.setLogin(result.getString(4));
+                isUser.setPassword(result.getString(5));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isUser;
+    }
 }

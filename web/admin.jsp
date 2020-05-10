@@ -47,7 +47,7 @@
                     </td>
 
                     <td>
-                        <form action="/update" method="get">
+                        <form action="/admin/update" method="get">
 
                             <div>
                                 <button type="submit" class="w3-btn w3-hover-amber w3-round" onclick=input name="id"
@@ -58,7 +58,7 @@
 
                     </td>
                     <td>
-                        <form action="/delete" method="post">
+                        <form action="/admin/delete" method="post">
                             <div>
                                 <button type="submit" class="w3-btn w3-hover-pink w3-round" onclick=input name="id"
                                         value="${user.getId()}">Delete <i class='fa fa-recycle'></i></button>
@@ -79,7 +79,7 @@
 <div class="w3-row">
     <div class="w3-col  w3-container" style="width:30%"></div>
     <div class="w3-col  w3-container" style="width:40%">
-        <form action="/" method="post" class="w3-center w3-container w3-card-4 w3-light-grey w3-text-green w3-margin">
+        <form action="/admin" method="post" class="w3-center w3-container w3-card-4 w3-light-grey w3-text-green w3-margin">
             <h2 class="w3-center">Добавить Чебурашку к Чебурнету</h2>
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user-o"></i></div>
             <div class="w3-rest">

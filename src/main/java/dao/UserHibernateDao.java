@@ -129,4 +129,21 @@ public class UserHibernateDao implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public User getUser(String login, String password) {
+        session = sessionFactory.openSession();
+        try {
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("login", login));
+            criteria.add(Restrictions.eq("password", password));
+            User user = (User) criteria.uniqueResult();
+            return user;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 }

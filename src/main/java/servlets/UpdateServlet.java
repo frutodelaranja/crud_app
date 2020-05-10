@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/update")
+@WebServlet("/admin/update")
 public class UpdateServlet extends HttpServlet {
     UserService service= UserService.getInstance();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        User user = new User();
         Long id = Long.valueOf(req.getParameter("id"));
         User user = service.getUser(id);
-        req.setAttribute("id", id);
+        req.setAttribute("id", user.getId());
         req.setAttribute("role", user.getRole());
         req.setAttribute("name", user.getName());
         req.setAttribute("mail", user.getLogin());
@@ -26,7 +25,6 @@ public class UpdateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        UserService service= UserService.getInstance();
         User user = new User();
         user.setId(Long.valueOf(req.getParameter("id")));
         user.setRole(req.getParameter("role"));
@@ -35,7 +33,7 @@ public class UpdateServlet extends HttpServlet {
         user.setPassword(req.getParameter("pass"));
         if (validate(user)){
             if (service.updateUser(user)){
-                req.getRequestDispatcher("/").forward(req,resp);
+                req.getRequestDispatcher("/admin").forward(req,resp);
             }else {
                 doGet(req, resp);
             }

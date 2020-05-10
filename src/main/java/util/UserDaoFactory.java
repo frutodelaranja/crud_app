@@ -20,9 +20,9 @@ public class UserDaoFactory {
         this.type = getProperty();
     }
 
-    public UserDao getDao(){
+    public UserDao getDao() {
         UserDao dao = null;
-        switch (type){
+        switch (type) {
             case JDBC:
                 dao = new UserJdbcDao();
                 break;
@@ -34,7 +34,7 @@ public class UserDaoFactory {
 
     }
 
-    private DaoType getProperty(){
+    private DaoType getProperty() {
         DaoType daoType = null;
         File file = new File("/home/evgeny/dev/crud_app/src/main/resources/daotype.properties");
         Properties properties = new Properties();

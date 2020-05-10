@@ -51,4 +51,7 @@ public class UserService {
     public boolean deleteUser(Long id) {
         return dao.deleteUser(id);
     }
+    public User getUser(String login, String password){
+        return dao.getUser(login, password);
+    }
 }

@@ -15,21 +15,23 @@
 
 <div class="w3-center w3-container w3-padding">
 
-    <c:set  var="user" value="${userName}"/>
-    <c:set  var="roleOld" value="${role}"/>
-    <c:set  var="idOld" value="${id}"/>
-    <c:set  var="nameOld" value="${name}"/>
-    <c:set  var="mailOld" value="${mail}"/>
-    <c:set  var="passOld" value="${pass}"/>
+    <c:set var="user" value="${userName}"/>
+    <c:set var="roleOld" value="${role}"/>
+    <c:set var="idOld" value="${id}"/>
+    <c:set var="nameOld" value="${name}"/>
+    <c:set var="mailOld" value="${mail}"/>
+    <c:set var="passOld" value="${pass}"/>
     <c:if test="${ user != null}">
         <div class="w3-panel w3-green w3-display-container w3-card-4 w3-round">
-            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-green w3-border w3-border-green w3-hover-border-grey">×</span>
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-green w3-border w3-border-green w3-hover-border-grey">×</span>
             <h5>User ${user} updated!</h5>
         </div>
     </c:if>
     <c:if test="${userName == null}">
         <div class="w3-panel w3-red w3-display-container w3-card-4 w3-round">
-            <span onclick="this.parentElement.style.display='none'" class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey">×</span>
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-margin-right w3-display-right w3-round-large w3-hover-red w3-border w3-border-red w3-hover-border-grey">×</span>
             <h5>"User not updated!"</h5>
         </div>
     </c:if>
@@ -41,31 +43,36 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
                     <div class="w3-rest">
-                        <input type="text" name="role" value="${roleOld}" placeholder="Role" class="w3-input w3-animate-input w3-border w3-round"><br />
+                        <input type="text" name="role" value="${roleOld}" placeholder="Role"
+                               class="w3-input w3-animate-input w3-border w3-round"><br/>
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
                     <div class="w3-rest">
-                        <input type="number" name="id" value="${idOld}" placeholder="ID" class="w3-input w3-animate-input w3-border w3-round"><br />
+                        <input type="number" name="id" value="${idOld}" placeholder="ID"
+                               class="w3-input w3-animate-input w3-border w3-round"><br/>
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user-o"></i></div>
                     <div class="w3-rest">
-                        <input  type="text" name="name" value="${nameOld}" placeholder="Name" class="w3-input w3-border w3-round">
+                        <input type="text" name="name" value="${nameOld}" placeholder="Name"
+                               class="w3-input w3-border w3-round">
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
                     <div class="w3-rest">
-                        <input type="text" name="mail" value="${mailOld}" placeholder="Email" class="w3-input w3-border w3-round">
+                        <input type="text" name="mail" value="${mailOld}" placeholder="Email"
+                               class="w3-input w3-border w3-round">
                     </div>
                 </div>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i></div>
                     <div class="w3-rest">
-                        <input type="password" name="pass" value="${passOld}" placeholder="Password" class="w3-input w3-border w3-round" >
+                        <input type="password" name="pass" value="${passOld}" placeholder="Password"
+                               class="w3-input w3-border w3-round">
                     </div>
                 </div>
 
@@ -80,7 +87,8 @@
 </div>
 <div class="w3-container w3-center">
     <div class="w3-bar w3-padding-large w3-padding-24">
-        <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/'">Home <i class='fa fa-home'></i></button>
+        <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/'">Home <i
+                class='fa fa-home'></i></button>
     </div>
 </div>
 </body>

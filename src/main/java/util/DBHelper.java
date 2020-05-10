@@ -15,25 +15,26 @@ public class DBHelper {
     private static String user = "root";
     private static String password = "root";
 
-    private DBHelper(){}
+    private DBHelper() {
+    }
 
-    public static DBHelper getInstance(){
+    public static DBHelper getInstance() {
         if (dbHelper == null) {
             dbHelper = new DBHelper();
         }
         return dbHelper;
     }
 
-    public Connection getConnection() throws SQLException{
+    public Connection getConnection() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return  connection = DriverManager.getConnection(url, user, password);
+        return connection = DriverManager.getConnection(url, user, password);
     }
 
-    public Configuration getConfiguration(){
+    public Configuration getConfiguration() {
         configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
 
