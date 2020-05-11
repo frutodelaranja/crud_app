@@ -1,8 +1,6 @@
 package service;
 
 import dao.UserDao;
-import dao.UserHibernateDao;
-import dao.UserJdbcDao;
 import model.User;
 import util.UserDaoFactory;
 
@@ -40,6 +38,7 @@ public class UserService {
     public User getUser(Long id){
         return dao.getUser(id);
     }
+
     public List<User> getAllUsers() {
         return dao.getAllUsers();
     }
@@ -51,6 +50,7 @@ public class UserService {
     public boolean deleteUser(Long id) {
         return dao.deleteUser(id);
     }
+
     public User getUser(String login, String password){
         return dao.getUser(login, password);
     }

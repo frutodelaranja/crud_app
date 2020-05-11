@@ -4,7 +4,6 @@ import model.User;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import util.DBHelper;
 
@@ -49,9 +48,7 @@ public class UserHibernateDao implements UserDao {
     public boolean thisUserExists(User user) {
         session = sessionFactory.openSession();
         try {
-            Transaction transaction = session.beginTransaction();
             List<User> users = session.createQuery("FROM User WHERE login = :login").setParameter("login", user.getLogin()).list();
-            transaction.commit();
             return !users.isEmpty();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -131,11 +128,8 @@ public class UserHibernateDao implements UserDao {
     public User getUser(String login, String password) {
         session = sessionFactory.openSession();
         try {
-            Criteria criteria = session.createCriteria(User.class);
-            criteria.add(Restrictions.eq("login", login));
-            criteria.add(Restrictions.eq("password", password));
-            User user = (User) criteria.uniqueResult();
-            return user;
+            List<User> users = session.createQuery("FROM User WHERE login = :login and password = :password").setParameter("login", login).setParameter("password", password).list();
+            return users.get(0);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {

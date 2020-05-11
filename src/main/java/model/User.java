@@ -22,20 +22,6 @@ public class User {
     public User() {
     }
 
-//    public User(String name, String login, String password) {
-//        this.name = name;
-//        this.login = login;
-//        this.password = password;
-//    }
-
-//    public User(Long id, String name, String login, String password) {
-//        this.id = id;
-//        this.name = name;
-//        this.login = login;
-//        this.password = password;
-//    }
-
-
     public User(String role, String name, String login, String password) {
         this.role = role;
         this.name = name;

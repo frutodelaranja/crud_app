@@ -16,17 +16,8 @@ public class AdminServlet extends HttpServlet {
     UserService service = UserService.getInstance();
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        String roleUser = null;
-        roleUser = (String) session.getAttribute("roleUser");
-        if (roleUser == null) {
-            resp.sendRedirect("/");
-        } else if (roleUser.equals("admin")) {
-            req.setAttribute("users", service.getAllUsers());
-            req.getRequestDispatcher("/admin.jsp").forward(req, resp);
-        } else {
-            resp.sendRedirect("/");
-        }
+        req.setAttribute("users", service.getAllUsers());
+        req.getRequestDispatcher("/admin.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -41,19 +41,19 @@
     </tr>
     <tr>
         <td>
-            <c:out value="${role}"/>
+            <c:out value="${user.getRole()}"/>
         </td>
         <td>
-            <c:out value="${id}"/>
+            <c:out value="${user.getId()}"/>
         </td>
         <td>
-            <c:out value="${name}"/>
+            <c:out value="${user.getName()}"/>
         </td>
         <td>
-            <c:out value="${login}"/>
+            <c:out value="${user.getLogin()}"/>
         </td>
         <td>
-            <c:out value="${pass}"/>
+            <c:out value="${user.getPassword()}"/>
         </td>
     </tr>
 </table>

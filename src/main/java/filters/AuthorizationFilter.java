@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/user"})
+@WebFilter(urlPatterns = {"/admin"})
 public class AuthorizationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -25,34 +25,26 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
         String login = null;
         String password = null;
+        User user = (User) session.getAttribute("user");
         login = req.getParameter("login");
         password = req.getParameter("pass");
-        String role = null;
-        if (session.getAttribute("roleUser") != null) {
-            session.removeAttribute("roleUser");
-            filterChain.doFilter(servletRequest, servletResponse);
-        }else if (login == null || password == null) {
-            resp.sendRedirect("/");
-        } else {
-            User user = null;
-            session.removeAttribute("roleUser");
+        if (user == null){
             user = service.getUser(login, password);
             if (user == null) {
                 resp.sendRedirect("/");
-            } else {
-                role = user.getRole();
-                switch (role) {
-                    case "user":
-                        session.setAttribute("roleUser", role);
-                        filterChain.doFilter(servletRequest, servletResponse);
-                        break;
-                    case "admin":
-                        session.setAttribute("roleUser", role);
-                        resp.sendRedirect("/admin");
-                        break;
-                    default:
-                        resp.sendRedirect("/");
+            }else {
+                session.setAttribute("user", user);
+                if (user.getRole().equals("admin")) {
+                    resp.sendRedirect("/admin");
+                }else {
+                    resp.sendRedirect("/user");
                 }
+            }
+        }else {
+            if (user.getRole().equals("admin")){
+                filterChain.doFilter(servletRequest, servletResponse);
+            }else {
+                resp.sendRedirect("/user");
             }
         }
     }
