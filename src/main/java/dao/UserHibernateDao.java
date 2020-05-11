@@ -12,18 +12,15 @@ import java.util.List;
 
 public class UserHibernateDao implements UserDao {
 
-    DBHelper dbHelper;
-    Configuration configuration;
     private SessionFactory sessionFactory;
     private Session session;
 
     public UserHibernateDao() {
-        this.dbHelper = DBHelper.getInstance();
-        this.configuration = dbHelper.getConfiguration();
         this.sessionFactory = getSessionFactory();
     }
 
     public SessionFactory getSessionFactory() {
+        Configuration configuration = DBHelper.getInstance().getConfiguration();
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
         builder.applySettings(configuration.getProperties());
         ServiceRegistry serviceRegistry = builder.build();
@@ -52,13 +49,13 @@ public class UserHibernateDao implements UserDao {
     public boolean thisUserExists(User user) {
         session = sessionFactory.openSession();
         try {
-            Criteria criteria = session.createCriteria(User.class);
-            criteria.add(Restrictions.eq("login", user.getLogin()));
-            User userOld = (User) criteria.uniqueResult();
-            return userOld != null ? true : false;
+            Transaction transaction = session.beginTransaction();
+            List<User> users = session.createQuery("FROM User WHERE login = :login").setParameter("login", user.getLogin()).list();
+            transaction.commit();
+            return !users.isEmpty();
         } catch (HibernateException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             session.close();
         }
         return false;
@@ -68,7 +65,7 @@ public class UserHibernateDao implements UserDao {
     public List<User> getAllUsers() {
         session = sessionFactory.openSession();
         try {
-            List<User> users = session.createCriteria(User.class).list();
+            List users = session.createQuery("FROM User").list();
             return users;
         } catch (HibernateException e) {
             e.printStackTrace();

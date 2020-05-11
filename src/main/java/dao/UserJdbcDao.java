@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserJdbcDao implements UserDao{
+public class UserJdbcDao implements UserDao {
     DBHelper dbHelper = DBHelper.getInstance();
     Connection connection;
 
@@ -19,14 +19,9 @@ public class UserJdbcDao implements UserDao{
         }
     }
 
-    public boolean addUser( User user){
-
-        try {
+    public boolean addUser(User user) {
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO users(role, name, login, password) VALUES (?,?,?,?)")) {
             connection.setAutoCommit(false);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try(PreparedStatement statement = connection.prepareStatement("INSERT INTO users(role, name, login, password) VALUES (?,?,?,?)")){
             statement.setString(1, user.getRole());
             statement.setString(2, user.getName());
             statement.setString(3, user.getLogin());
@@ -73,14 +68,8 @@ public class UserJdbcDao implements UserDao{
     }
 
     public boolean updateUser(User user) {
-
-        try {
-            connection.setAutoCommit(false);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
         try (PreparedStatement statement = connection.prepareStatement("UPDATE users SET role=?, name=?, login=?, password=? WHERE id=?");) {
+            connection.setAutoCommit(false);
             statement.setString(1, user.getRole());
             statement.setString(2, user.getName());
             statement.setString(3, user.getLogin());
@@ -101,12 +90,8 @@ public class UserJdbcDao implements UserDao{
     }
 
     public boolean deleteUser(Long id) {
-        try {
-            connection.setAutoCommit(false);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         try (PreparedStatement statement = connection.prepareStatement("DELETE from users WHERE id=?")) {
+            connection.setAutoCommit(false);
             statement.setLong(1, id);
             boolean yes = statement.executeUpdate() > 0;
             connection.commit();
@@ -121,6 +106,7 @@ public class UserJdbcDao implements UserDao{
             return false;
         }
     }
+
     public User getUser(Long id) {
         User isUser = new User();
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id=?")) {

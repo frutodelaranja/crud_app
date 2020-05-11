@@ -29,11 +29,13 @@ public class AuthorizationFilter implements Filter {
         password = req.getParameter("pass");
         String role = null;
         if (session.getAttribute("roleUser") != null) {
+            session.removeAttribute("roleUser");
             filterChain.doFilter(servletRequest, servletResponse);
         }else if (login == null || password == null) {
             resp.sendRedirect("/");
         } else {
             User user = null;
+            session.removeAttribute("roleUser");
             user = service.getUser(login, password);
             if (user == null) {
                 resp.sendRedirect("/");
