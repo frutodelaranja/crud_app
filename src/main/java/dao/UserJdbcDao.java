@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserJdbcDao implements UserDao {
-    DBHelper dbHelper = DBHelper.getInstance();
+
     Connection connection;
 
     {
         try {
-            connection = dbHelper.getConnection();
+            connection = DBHelper.getInstance().getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -118,12 +118,13 @@ public class UserJdbcDao implements UserDao {
                 isUser.setName(result.getString(3));
                 isUser.setLogin(result.getString(4));
                 isUser.setPassword(result.getString(5));
+                return isUser;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return isUser;
+        return null;
     }
 
     @Override
@@ -139,11 +140,12 @@ public class UserJdbcDao implements UserDao {
                 isUser.setName(result.getString(3));
                 isUser.setLogin(result.getString(4));
                 isUser.setPassword(result.getString(5));
+                return  isUser;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return isUser;
+        return null;
     }
 }

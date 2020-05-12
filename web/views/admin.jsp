@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<%--<script src='https://kit.fontawesome.com/a076d05399.js'></script>--%>
 <html>
 <head>
     <title>Admin</title>
@@ -96,6 +96,13 @@
             <button type="submit" class="w3-btn w3-green w3-round w3-margin-bottom">Add <i
                     class='fa fa-user-plus'></i></button>
         </form>
+    </div>
+</div>
+
+<div class="w3-container w3-center">
+    <div class="w3-bar w3-padding-large w3-padding-24">
+        <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/'">Home <i
+                class='fa fa-home'></i></button>
     </div>
 </div>
 </body>

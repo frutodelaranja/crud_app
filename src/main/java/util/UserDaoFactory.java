@@ -7,6 +7,7 @@ import dao.UserJdbcDao;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 public class UserDaoFactory {
     DaoType type;
@@ -31,10 +32,10 @@ public class UserDaoFactory {
 
     private DaoType getProperty() {
         DaoType daoType = null;
-        File file = new File("/home/evgeny/dev/crud_app/src/main/resources/daotype.properties");
         Properties properties = new Properties();
         try {
-            properties.load(new FileReader(file));
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("daotype.properties");
+            properties.load(is);
             daoType = DaoType.valueOf(properties.getProperty("daotype"));
         } catch (IOException e) {
             e.printStackTrace();

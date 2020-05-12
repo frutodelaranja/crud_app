@@ -95,7 +95,7 @@ public class UserHibernateDao implements UserDao {
         session = sessionFactory.openSession();
         try {
             Transaction transaction = session.beginTransaction();
-            User user = (User) session.load(User.class,id);
+            User user = (User) session.get(User.class,id);
             session.delete(user);
             boolean yes = session.contains(user);
             transaction.commit();
@@ -129,7 +129,9 @@ public class UserHibernateDao implements UserDao {
         session = sessionFactory.openSession();
         try {
             List<User> users = session.createQuery("FROM User WHERE login = :login and password = :password").setParameter("login", login).setParameter("password", password).list();
-            return users.get(0);
+            if (!users.isEmpty()){
+                return users.get(0);
+            }
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {

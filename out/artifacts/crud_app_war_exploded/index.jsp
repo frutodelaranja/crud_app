@@ -23,7 +23,7 @@
     <div class="w3-row">
         <div class="w3-col  w3-container" style="width:25%"></div>
         <div class="w3-col  w3-container" style="width:50%">
-            <form action="/admin" class="w3-center w3-container w3-card-4 w3-light-grey w3-margin" method="post">
+            <form action="/authorization" class="w3-center w3-container w3-card-4 w3-light-grey w3-margin" method="post">
                 <h2 style="color:MediumSlateBlue" class="w3-center">Захади!</h2>
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i style="color:MediumSlateBlue" class="w3-xxlarge fa fa-user-o"></i></div>
@@ -45,6 +45,7 @@
     </div>
 
 </div>
+
 
 </body>
 </html>
