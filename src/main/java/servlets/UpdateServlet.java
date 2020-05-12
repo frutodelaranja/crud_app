@@ -21,7 +21,7 @@ public class UpdateServlet extends HttpServlet {
         req.setAttribute("name", user.getName());
         req.setAttribute("mail", user.getLogin());
         req.setAttribute("pass", user.getPassword());
-        req.getRequestDispatcher("/update.jsp").forward(req,resp);
+        req.getRequestDispatcher("/views/update.jsp").forward(req,resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

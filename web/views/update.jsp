@@ -50,8 +50,8 @@
                 <div class="w3-row w3-section">
                     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-key"></i></div>
                     <div class="w3-rest">
-                        <input type="number" name="id" value="${idOld}" placeholder="ID"
-                               class="w3-input w3-animate-input w3-border w3-round"><br/>
+                        <input placeholder="${idOld}"
+                               class="w3-input w3-animate-input w3-border w3-round" readonly><br/>
                     </div>
                 </div>
                 <div class="w3-row w3-section">
@@ -87,7 +87,7 @@
 </div>
 <div class="w3-container w3-center">
     <div class="w3-bar w3-padding-large w3-padding-24">
-        <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/'">Home <i
+        <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='..'">Home <i
                 class='fa fa-home'></i></button>
     </div>
 </div>
