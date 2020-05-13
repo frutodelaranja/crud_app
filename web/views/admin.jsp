@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--<script src='https://kit.fontawesome.com/a076d05399.js'></script>--%>
 <html>
 <head>
     <title>Admin</title>
