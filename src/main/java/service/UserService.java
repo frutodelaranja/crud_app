@@ -6,7 +6,7 @@ import util.UserDaoFactory;
 
 import java.util.List;
 
-public class UserService {
+public class UserService implements Service{
     private static UserService userService;
     private UserDao dao;
     private UserService(){
